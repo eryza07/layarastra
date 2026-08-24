@@ -482,9 +482,23 @@ input, select { font-family: inherit; }
 }
 .btn-back:active { color: var(--hijau); }
 
-.player-wrap { position: relative; background: #000; }
-.player-wrap video { width: 100%; display: block; max-height: 56vw; background: #000; }
-@media (min-width: 800px) { .player-wrap video { max-height: 520px; } }
+.player-wrap {
+  position: relative;
+  background: #000;
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%;   /* trik 16:9 (9 ÷ 16 = 56.25%) — kompatibel di semua browser HP */
+  overflow: hidden;
+}
+.player-wrap video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: #000;
+  object-fit: contain;       /* video tidak gepeng/terpotong, tetap 16:9 */
+}
 
 .watch-detail-area {
   max-width: 900px;
