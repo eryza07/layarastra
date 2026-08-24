@@ -500,9 +500,79 @@ input, select { font-family: inherit; }
   object-fit: contain;       /* video tidak gepeng/terpotong, tetap 16:9 */
 }
 
-.watch-detail-area {
-  max-width: 900px;
+/* Layout ala YouTube: kolom video (kiri) + sidebar rekomendasi (kanan) */
+.watch-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.watch-main { min-width: 0; }
+
+.watch-sidebar {
+  padding: 16px;
+}
+.sidebar-title-heading {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  border-left: 4px solid var(--hijau);
+  padding-left: 10px;
+}
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sidebar-card {
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 4px;
+}
+.sidebar-card:active { background: rgba(255,255,255,.06); }
+.sidebar-thumb {
+  width: 128px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+  background: var(--bg-elevated);
+}
+.sidebar-info { min-width: 0; padding: 2px 0; }
+.sidebar-card-title {
+  font-size: 13px;
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.sidebar-card-meta { font-size: 11px; color: var(--hijau); }
+
+.watch-forum-wrap {
+  max-width: 1400px;
   margin: 0 auto;
+}
+
+/* Di layar lebih lebar (tablet ke atas): video+info kiri, sidebar kanan sejajar, video otomatis mengecil (rasio 16:9 tidak berubah) */
+@media (min-width: 900px) {
+  .watch-body {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .watch-main { flex: 1 1 0; }
+  .watch-sidebar {
+    width: 360px;
+    flex-shrink: 0;
+    padding: 0;
+  }
+  .player-wrap { border-radius: 10px; overflow: hidden; }
 }
 
 /* Custom video controls */
