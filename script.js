@@ -26,8 +26,33 @@ const navbar = document.getElementById("navbar");
 const userChip = document.getElementById("userChip");
 const userInitial = document.getElementById("userInitial");
 const userNameLabel = document.getElementById("userNameLabel");
-const logoutBtn = document.getElementById("logoutBtn");
 const searchInput = document.getElementById("searchInput");
+
+// Dropdown menu profil
+const userDropdown = document.getElementById("userDropdown");
+const menuProfileBtn = document.getElementById("menuProfileBtn");
+const menuSettingsBtn = document.getElementById("menuSettingsBtn");
+const menuLogoutBtn = document.getElementById("menuLogoutBtn");
+
+// Modal profil
+const profileModalBackdrop = document.getElementById("profileModalBackdrop");
+const profileModalClose = document.getElementById("profileModalClose");
+const profileAvatarBig = document.getElementById("profileAvatarBig");
+const profileNameBig = document.getElementById("profileNameBig");
+const profileEmailBig = document.getElementById("profileEmailBig");
+const statFilmCount = document.getElementById("statFilmCount");
+const statCommentCount = document.getElementById("statCommentCount");
+const profileToSettingsBtn = document.getElementById("profileToSettingsBtn");
+
+// Modal pengaturan
+const settingsModalBackdrop = document.getElementById("settingsModalBackdrop");
+const settingsModalClose = document.getElementById("settingsModalClose");
+const settingsForm = document.getElementById("settingsForm");
+const settingsNameInput = document.getElementById("settingsNameInput");
+const settingsAutoplayToggle = document.getElementById("settingsAutoplayToggle");
+const settingsSubtitleToggle = document.getElementById("settingsSubtitleToggle");
+const settingsClearCommentsBtn = document.getElementById("settingsClearCommentsBtn");
+const settingsLogoutBtn = document.getElementById("settingsLogoutBtn");
 
 const heroSection = document.getElementById("heroSection");
 const heroBadge = document.getElementById("heroBadge");
@@ -38,8 +63,10 @@ const heroInfoBtn = document.getElementById("heroInfoBtn");
 
 const rowsWrap = document.getElementById("rowsWrap");
 
-const modalBackdrop = document.getElementById("modalBackdrop");
-const modalClose = document.getElementById("modalClose");
+const watchScreen = document.getElementById("watchScreen");
+const watchBackBtn = document.getElementById("watchBackBtn");
+const relatedRow = document.getElementById("relatedRow");
+
 const playerVideo = document.getElementById("playerVideo");
 const playerTrack = document.getElementById("playerTrack");
 const detailTitle = document.getElementById("detailTitle");
@@ -73,8 +100,8 @@ function getUser() {
   catch (e) { return null; }
 }
 
-function saveUser(name) {
-  localStorage.setItem(LS_USER_KEY, JSON.stringify({ name, loginAt: Date.now() }));
+function saveUser(name, email) {
+  localStorage.setItem(LS_USER_KEY, JSON.stringify({ name, email, loginAt: Date.now() }));
 }
 
 function logout() {
@@ -148,12 +175,126 @@ loginForm.addEventListener("submit", (e) => {
   }
   // Demo auth: tidak ada backend, langsung dianggap berhasil.
   const displayName = email.split("@")[0];
-  saveUser(displayName);
+  saveUser(displayName, email);
   showApp(getUser());
   buildPage();
 });
 
-logoutBtn.addEventListener("click", logout);
+// ============================================================
+// DROPDOWN MENU PROFIL (di navbar)
+// ============================================================
+userChip.addEventListener("click", (e) => {
+  e.stopPropagation();
+  userDropdown.classList.toggle("hidden");
+});
+document.addEventListener("click", (e) => {
+  if (!userDropdown.classList.contains("hidden") && !userDropdown.contains(e.target) && e.target !== userChip) {
+    userDropdown.classList.add("hidden");
+  }
+});
+
+menuProfileBtn.addEventListener("click", () => {
+  userDropdown.classList.add("hidden");
+  openProfileModal();
+});
+menuSettingsBtn.addEventListener("click", () => {
+  userDropdown.classList.add("hidden");
+  openSettingsModal();
+});
+menuLogoutBtn.addEventListener("click", () => {
+  userDropdown.classList.add("hidden");
+  logout();
+});
+
+// ============================================================
+// MODAL PROFIL
+// ============================================================
+function openProfileModal() {
+  const user = getUser();
+  if (!user) return;
+  profileAvatarBig.textContent = user.name.charAt(0).toUpperCase();
+  profileNameBig.textContent = user.name;
+  profileEmailBig.textContent = user.email || "-";
+  statFilmCount.textContent = MOVIES.length;
+
+  let totalComments = 0;
+  MOVIES.forEach(m => {
+    const comments = getComments(m.id);
+    totalComments += comments.filter(c => c.user === user.name).length;
+  });
+  statCommentCount.textContent = totalComments;
+
+  profileModalBackdrop.classList.remove("hidden");
+}
+profileModalClose.addEventListener("click", () => profileModalBackdrop.classList.add("hidden"));
+profileModalBackdrop.addEventListener("click", (e) => {
+  if (e.target === profileModalBackdrop) profileModalBackdrop.classList.add("hidden");
+});
+profileToSettingsBtn.addEventListener("click", () => {
+  profileModalBackdrop.classList.add("hidden");
+  openSettingsModal();
+});
+
+// ============================================================
+// MODAL PENGATURAN
+// ============================================================
+const LS_SETTINGS_KEY = "nf_settings";
+
+function getSettings() {
+  try {
+    return Object.assign(
+      { autoplay: true, subtitleDefault: false },
+      JSON.parse(localStorage.getItem(LS_SETTINGS_KEY)) || {}
+    );
+  } catch (e) {
+    return { autoplay: true, subtitleDefault: false };
+  }
+}
+function saveSettings(settings) {
+  localStorage.setItem(LS_SETTINGS_KEY, JSON.stringify(settings));
+}
+
+function openSettingsModal() {
+  const user = getUser();
+  const settings = getSettings();
+  settingsNameInput.value = user ? user.name : "";
+  settingsAutoplayToggle.checked = settings.autoplay;
+  settingsSubtitleToggle.checked = settings.subtitleDefault;
+  settingsModalBackdrop.classList.remove("hidden");
+}
+settingsModalClose.addEventListener("click", () => settingsModalBackdrop.classList.add("hidden"));
+settingsModalBackdrop.addEventListener("click", (e) => {
+  if (e.target === settingsModalBackdrop) settingsModalBackdrop.classList.add("hidden");
+});
+
+settingsForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const newName = settingsNameInput.value.trim();
+  const user = getUser();
+  if (newName && user) {
+    saveUser(newName, user.email);
+    userInitial.textContent = newName.charAt(0).toUpperCase();
+    userNameLabel.textContent = newName;
+  }
+  saveSettings({
+    autoplay: settingsAutoplayToggle.checked,
+    subtitleDefault: settingsSubtitleToggle.checked
+  });
+  settingsModalBackdrop.classList.add("hidden");
+});
+
+settingsClearCommentsBtn.addEventListener("click", () => {
+  const user = getUser();
+  if (!user) return;
+  if (!confirm("Hapus semua komentar yang pernah kamu tulis di semua film?")) return;
+  MOVIES.forEach(m => {
+    const remaining = getComments(m.id).filter(c => c.user !== user.name);
+    saveComments(m.id, remaining);
+  });
+  alert("Semua komentar kamu sudah dihapus.");
+});
+
+settingsLogoutBtn.addEventListener("click", logout);
 
 // ============================================================
 // RENDER HALAMAN
@@ -246,23 +387,45 @@ function openMovie(id) {
   resetPlayerUI();
 
   renderChat(movie.id);
+  renderRelated(movie);
 
-  modalBackdrop.classList.add("open");
-  document.body.style.overflow = "hidden";
+  // Pindah dari halaman browse ke halaman tonton (bukan popup)
+  appRoot.classList.add("hidden");
+  watchScreen.classList.remove("hidden");
+  watchScreen.scrollTop = 0;
+  window.scrollTo(0, 0);
 }
 
 function closeMovie() {
   playerVideo.pause();
-  modalBackdrop.classList.remove("open");
-  document.body.style.overflow = "";
+  watchScreen.classList.add("hidden");
+  appRoot.classList.remove("hidden");
+  window.scrollTo(0, 0);
 }
-modalClose.addEventListener("click", closeMovie);
-modalBackdrop.addEventListener("click", (e) => {
-  if (e.target === modalBackdrop) closeMovie();
-});
+watchBackBtn.addEventListener("click", closeMovie);
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeMovie();
+  if (e.key === "Escape" && !watchScreen.classList.contains("hidden")) closeMovie();
 });
+
+// Putar otomatis film berikutnya (sesuai pengaturan "Putar Otomatis")
+playerVideo.addEventListener("ended", () => {
+  if (!getSettings().autoplay || !currentMovie) return;
+  const others = MOVIES.filter(m => m.id !== currentMovie.id && m.category === currentMovie.category);
+  const next = others[0] || MOVIES.find(m => m.id !== currentMovie.id);
+  if (next) openMovie(next.id);
+});
+
+function renderRelated(movie) {
+  const others = MOVIES.filter(m => m.id !== movie.id && m.category === movie.category);
+  const list = (others.length ? others : MOVIES.filter(m => m.id !== movie.id)).slice(0, 8);
+  relatedRow.innerHTML = `
+    <div class="row-title">Tonton Juga</div>
+    <div class="row-scroll">${list.map(cardHTML).join("")}</div>
+  `;
+  relatedRow.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("click", () => openMovie(card.dataset.id));
+  });
+}
 
 // ---------- Kontrol Video Custom ----------
 function resetPlayerUI() {
@@ -270,8 +433,12 @@ function resetPlayerUI() {
   progressRange.value = 0;
   timeText.textContent = "00:00 / 00:00";
   volRange.value = playerVideo.volume;
-  btnCC.classList.remove("active-cc");
-  if (playerVideo.textTracks[0]) playerVideo.textTracks[0].mode = "hidden";
+
+  const wantSubtitle = getSettings().subtitleDefault;
+  btnCC.classList.toggle("active-cc", wantSubtitle);
+  if (playerVideo.textTracks[0]) {
+    playerVideo.textTracks[0].mode = wantSubtitle ? "showing" : "hidden";
+  }
 }
 
 btnPlayPause.addEventListener("click", () => {
