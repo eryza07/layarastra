@@ -299,9 +299,18 @@ settingsLogoutBtn.addEventListener("click", logout);
 // ============================================================
 // RENDER HALAMAN
 // ============================================================
+
+// Urutan tampil: film yang PALING TERAKHIR ditambahkan di data.js
+// (paling bawah array) otomatis muncul PALING DEPAN di website.
+function orderedMovies() {
+  return [...MOVIES].reverse();
+}
+
 function buildPage() {
-  // Hero pakai film pertama
-  const hero = MOVIES[0];
+  const list = orderedMovies();
+
+  // Hero pakai film paling baru ditambahkan
+  const hero = list[0];
   heroSection.style.backgroundImage = `url('${hero.banner}')`;
   heroBadge.textContent = "Film Original • " + hero.genre;
   heroTitle.textContent = hero.title;
@@ -309,7 +318,7 @@ function buildPage() {
   heroPlayBtn.onclick = () => openMovie(hero.id);
   heroInfoBtn.onclick = () => openMovie(hero.id);
 
-  renderRows(MOVIES);
+  renderRows(list);
 }
 
 function renderRows(movieList) {
@@ -355,7 +364,7 @@ function cardHTML(m) {
 // ---------- Search ----------
 searchInput.addEventListener("input", () => {
   const q = searchInput.value.trim().toLowerCase();
-  const filtered = MOVIES.filter(m =>
+  const filtered = orderedMovies().filter(m =>
     m.title.toLowerCase().includes(q) ||
     m.genre.toLowerCase().includes(q)
   );
@@ -417,14 +426,23 @@ playerVideo.addEventListener("ended", () => {
 
 function renderRelated(movie) {
   const others = MOVIES.filter(m => m.id !== movie.id && m.category === movie.category);
-  const list = (others.length ? others : MOVIES.filter(m => m.id !== movie.id)).slice(0, 8);
-  relatedRow.innerHTML = `
-    <div class="row-title">Tonton Juga</div>
-    <div class="row-scroll">${list.map(cardHTML).join("")}</div>
-  `;
-  relatedRow.querySelectorAll(".card").forEach(card => {
+  const list = (others.length ? others : MOVIES.filter(m => m.id !== movie.id)).slice(0, 10);
+  relatedRow.innerHTML = list.map(sidebarCardHTML).join("");
+  relatedRow.querySelectorAll(".sidebar-card").forEach(card => {
     card.addEventListener("click", () => openMovie(card.dataset.id));
   });
+}
+
+function sidebarCardHTML(m) {
+  return `
+    <div class="sidebar-card" data-id="${m.id}">
+      <img class="sidebar-thumb" src="${m.banner || m.poster}" alt="${m.title}" loading="lazy">
+      <div class="sidebar-info">
+        <div class="sidebar-card-title">${m.title}</div>
+        <div class="sidebar-card-meta">${m.year} · ${m.genre}</div>
+      </div>
+    </div>
+  `;
 }
 
 // ---------- Kontrol Video Custom ----------
