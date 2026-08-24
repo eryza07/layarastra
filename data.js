@@ -1,6 +1,20 @@
 // data.js — Data film contoh (demo). Ganti "video" & "poster" dengan aset asli kamu nanti.
 const MOVIES = [
   {
+    id: "rmci25",
+    title: "Rewind Minecraft Indonesia 2025",
+    year: 2025,
+    genre: "Animasi",
+    rating: "SU",
+    duration: "40 mnt",
+    description: "Rewind Minecraft 2025 Sinopsis mengisahkan petualangan Mark, Freya, dan Benny di 2026. Mereka akan melanjutkan kisah yang telah dimulai di 2025 dengan berbagai tantangan dan keajaiban yang mereka temukan. Sinopsis ini menunjukkan bagaimana karya-karya yang viral di YouTube Indonesia dapat diubah menjadi animasi dan permainan baru yang menarik.",
+    poster: "https://placehold.co/400x600/0b3d24/ffffff?text=Big+Buck+Bunny",
+    banner: "rmcib2025.jpg",
+    video: "rmic2025.mp4",
+    subtitle: "subtitles/sample-id.vtt",
+    category: "Trending Sekarang"
+  },
+  {
     id: "bbb",
     title: "Big Buck Bunny",
     year: 2008,
