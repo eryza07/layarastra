@@ -142,17 +142,17 @@ const MOVIES = [
     category: "Thriller"
   },
   {
-    id: "rmci2025",
-    title: "Rewind Minecraft Indonesia 2025",
-    year: 2025,
-    genre: "Animasi, Fantasy, Action",
+    id: "rmci2024",
+    title: "Rewind Minecraft Indonesia 2024",
+    year: 2024,
+    genre: "Animasi, Slice Of Life, Dramatic",
     rating: "SU",
     duration: "40 mnt",
     description: "Rewind Minecraft 2025 Sinopsis mengisahkan petualangan Mark, Freya, dan Benny di 2026. Mereka akan melanjutkan kisah yang telah dimulai di 2025 dengan berbagai tantangan dan keajaiban yang mereka temukan.",
-    poster: "https://placehold.co/400x600/047857/ffffff?text=On+Street+%26+Dirt",
-    banner: "rmcib2025.jpg",
+    poster: "rmic2024p.jpg",
+    banner: "rmcib2024.jpg",
     video: "https://gdurl.com/W8TK",
-    subtitle: "subtitles/rmci2025.vtt",
+    subtitle: "subtitles/rmci2024.vtt",
     category: "Animasi"
   },
   {
