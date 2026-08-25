@@ -1,4 +1,5 @@
-// data.js — Data film contoh (demo). Ganti "video" & "poster" dengan aset asli kamu nanti.
+// data.js — Data film contoh (demo). Poster & banner disimpan lokal di folder images/.
+// Ganti "video" dengan aset asli kamu nanti, dan ganti file di images/posters & images/banners sesuai kebutuhan.
 const MOVIES = [
   {
     id: "vifan",
@@ -15,6 +16,20 @@ const MOVIES = [
     category: "Animasi"
   },
   {
+    id: "bbb",
+    title: "Big Buck Bunny",
+    year: 2008,
+    genre: "Animasi",
+    rating: "SU",
+    duration: "10 mnt",
+    description: "Seekor kelinci raksasa yang baik hati dibalas dengan kejahilan oleh tiga hewan pengerat nakal. Suatu hari, kesabarannya habis dan ia membalas dengan caranya sendiri.",
+    poster: "images/posters/bbb.jpg",
+    banner: "images/banners/bbb.jpg",
+    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    subtitle: "subtitles/sample-id.vtt",
+    category: "Trending Sekarang"
+  },
+  {
     id: "elephant",
     title: "Elephant's Dream",
     year: 2006,
@@ -22,8 +37,8 @@ const MOVIES = [
     rating: "13+",
     duration: "11 mnt",
     description: "Dua karakter menjelajahi dunia mesin surreal yang penuh keanehan visual dan makna tersembunyi di setiap sudutnya.",
-    poster: "https://placehold.co/400x600/104a2b/ffffff?text=Elephant%27s+Dream",
-    banner: "https://placehold.co/1200x500/104a2b/ffffff?text=Elephant%27s+Dream",
+    poster: "images/posters/elephant.jpg",
+    banner: "images/banners/elephant.jpg",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
     subtitle: "subtitles/sample-id.vtt",
     category: "Trending Sekarang"
@@ -36,8 +51,8 @@ const MOVIES = [
     rating: "13+",
     duration: "15 mnt",
     description: "Seorang gadis muda bernama Sintel berpetualang mencari naga muda yang telah membesarkannya dan hilang secara misterius.",
-    poster: "https://placehold.co/400x600/0e5c34/ffffff?text=Sintel",
-    banner: "https://placehold.co/1200x500/0e5c34/ffffff?text=Sintel",
+    poster: "images/posters/sintel.jpg",
+    banner: "images/banners/sintel.jpg",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
     subtitle: "subtitles/sample-id.vtt",
     category: "Film Populer"
@@ -50,8 +65,8 @@ const MOVIES = [
     rating: "17+",
     duration: "12 mnt",
     description: "Sekelompok prajurit dan ilmuwan berkumpul di reruntuhan Amsterdam untuk menyusun rencana terakhir melawan pasukan robot yang mengancam bumi.",
-    poster: "https://placehold.co/400x600/065f46/ffffff?text=Tears+of+Steel",
-    banner: "https://placehold.co/1200x500/065f46/ffffff?text=Tears+of+Steel",
+    poster: "images/posters/tears.jpg",
+    banner: "images/banners/tears.jpg",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
     subtitle: "subtitles/sample-id.vtt",
     category: "Film Populer"
@@ -64,8 +79,8 @@ const MOVIES = [
     rating: "13+",
     duration: "1 mnt",
     description: "Aksi seru penuh kobaran api dan kecepatan tinggi dalam tayangan singkat yang memacu adrenalin.",
-    poster: "https://placehold.co/400x600/166534/ffffff?text=Bigger+Blazes",
-    banner: "https://placehold.co/1200x500/166534/ffffff?text=Bigger+Blazes",
+    poster: "images/posters/blazes.jpg",
+    banner: "images/banners/blazes.jpg",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
     subtitle: "subtitles/sample-id.vtt",
     category: "Aksi & Laga"
@@ -78,8 +93,8 @@ const MOVIES = [
     rating: "13+",
     duration: "1 mnt",
     description: "Pelarian penuh ketegangan lintas medan ekstrem dengan visual sinematik yang memukau.",
-    poster: "https://placehold.co/400x600/15803d/ffffff?text=Bigger+Escape",
-    banner: "https://placehold.co/1200x500/15803d/ffffff?text=Bigger+Escape",
+    poster: "images/posters/escape.jpg",
+    banner: "images/banners/escape.jpg",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscape.mp4",
     subtitle: "subtitles/sample-id.vtt",
     category: "Aksi & Laga"
@@ -92,8 +107,8 @@ const MOVIES = [
     rating: "SU",
     duration: "1 mnt",
     description: "Tayangan ringan penuh keseruan yang cocok ditonton bersama keluarga di akhir pekan.",
-    poster: "https://placehold.co/400x600/16a34a/ffffff?text=Bigger+Fun",
-    banner: "https://placehold.co/1200x500/16a34a/ffffff?text=Bigger+Fun",
+    poster: "images/posters/fun.jpg",
+    banner: "images/banners/fun.jpg",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
     subtitle: "subtitles/sample-id.vtt",
     category: "Komedi"
@@ -106,8 +121,8 @@ const MOVIES = [
     rating: "13+",
     duration: "1 mnt",
     description: "Perjalanan liar penuh kejutan dan kecepatan yang akan memacu jantungmu berdegup kencang.",
-    poster: "https://placehold.co/400x600/22c55e/052e16?text=Bigger+Joyrides",
-    banner: "https://placehold.co/1200x500/22c55e/052e16?text=Bigger+Joyrides",
+    poster: "images/posters/joyrides.jpg",
+    banner: "images/banners/joyrides.jpg",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
     subtitle: "subtitles/sample-id.vtt",
     category: "Aksi & Laga"
@@ -120,8 +135,8 @@ const MOVIES = [
     rating: "17+",
     duration: "1 mnt",
     description: "Ketegangan memuncak dalam tayangan singkat penuh kejutan dari awal hingga akhir.",
-    poster: "https://placehold.co/400x600/059669/ffffff?text=Bigger+Meltdowns",
-    banner: "https://placehold.co/1200x500/059669/ffffff?text=Bigger+Meltdowns",
+    poster: "images/posters/meltdowns.jpg",
+    banner: "images/banners/meltdowns.jpg",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
     subtitle: "subtitles/sample-id.vtt",
     category: "Thriller"
