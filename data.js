@@ -147,7 +147,7 @@ const MOVIES = [
     year: 2024,
     genre: "Animasi, Slice Of Life, Dramatic",
     rating: "SU",
-    duration: "40 mnt",
+    duration: "30 mnt",
     description: "Rewind Minecraft 2025 Sinopsis mengisahkan petualangan Mark, Freya, dan Benny di 2026. Mereka akan melanjutkan kisah yang telah dimulai di 2025 dengan berbagai tantangan dan keajaiban yang mereka temukan.",
     poster: "rmic2024p.jpg",
     banner: "rmcib2024.jpg",
