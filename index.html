@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Layar Astra Layanan Film /Kartun Indie & Hiburan</title>
+<title>Layar Astra — Layanan Perantara Streaming Film & Animssi Indie</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🟢</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,8 +22,8 @@
   </nav>
 
   <div class="landing-hero">
-    <h1>Layanan Perantara Film & Animasi Indie</h1>
-    <p>Nonton kapan saja, di mana saja. Diskusikan film atau animasi indie favoritmu bareng komunitas lewat forum di setiap judul.</p>
+    <h1>Film & Animasi Indie Tanpa Batas</h1>
+    <p>Nonton kapan saja, di mana saja. Diskusikan film favoritmu bareng komunitas lewat forum di setiap judul.</p>
     <div class="landing-cta">
       <button class="btn btn-primary btn-lg" id="landingRegisterBtn">Daftar Sekarang</button>
       <button class="btn btn-secondary btn-lg" id="landingLoginBtn2">Sudah Punya Akun? Masuk</button>
@@ -89,6 +89,264 @@
       <div class="brand-blob blob-2"></div>
       <div class="brand-content">
         <div class="brand-logo">NI<span>JAU</span></div>
+        <p class="brand-tagline">Film & Animasi Indie tanpa batas — nonton, diskusi, dan nikmati bareng komunitas.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ APLIKASI UTAMA ============ -->
+<div id="appRoot" class="hidden">
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <button class="logo logo-btn" id="navLogoBtn" title="Kembali ke halaman utama">NI<span>JAU</span></button>
+    <div class="nav-links">
+      <div class="search-wrap">
+        <button class="search-icon-btn" id="searchToggleBtn" title="Cari film" aria-label="Cari film">🔍</button>
+        <div class="search-panel hidden" id="searchPanel">
+          <span class="search-panel-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Cari judul film...">
+          <button class="search-panel-close" id="searchCloseBtn" aria-label="Tutup pencarian">✕</button>
+        </div>
+      </div>
+      <div class="user-menu-wrap">
+        <button class="user-chip" id="userChip">
+          <div class="avatar" id="userInitial">U</div>
+          <span id="userNameLabel">User</span>
+          <span class="chevron">▾</span>
+        </button>
+        <div class="user-dropdown hidden" id="userDropdown">
+          <button class="dropdown-item" id="menuProfileBtn">👤 Profil Saya</button>
+          <button class="dropdown-item" id="menuSettingsBtn">⚙️ Pengaturan</button>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item danger" id="menuLogoutBtn">🚪 Keluar</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="heroSection">
+    <div class="hero-content">
+      <div class="hero-badge" id="heroBadge">Film Original</div>
+      <h1 class="hero-title" id="heroTitle">Judul Film</h1>
+      <p class="hero-desc" id="heroDesc">Deskripsi film akan muncul di sini.</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary" id="heroPlayBtn">▶ Tonton Sekarang</button>
+        <button class="btn btn-secondary" id="heroInfoBtn">ℹ Info Selengkapnya</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAFTAR FILM -->
+  <main class="rows-wrap" id="rowsWrap"></main>
+
+  <footer class="site-footer">
+    🟢 Layar Astra — Dibuat dengan senang hati sebgai perantara film atau animasi indie yang uploud di youtube.
+  </footer>
+</div>
+
+<!-- ============ HALAMAN TONTON FILM (BUKAN POPUP, HALAMAN TERSENDIRI) ============ -->
+<div class="watch-screen hidden" id="watchScreen">
+  <nav class="watch-nav">
+    <button class="btn-back" id="watchBackBtn">← Kembali ke Daftar Film</button>
+    <button class="logo watch-logo logo-btn" id="watchLogoBtn" title="Kembali ke halaman utama">Layar<span>Astra</span></button>
+  </nav>
+
+  <div class="watch-body">
+    <!-- KOLOM UTAMA: video player + info film -->
+    <div class="watch-main">
+      <div class="player-wrap">
+        <video id="playerVideo" playsinline preload="metadata">
+          <track id="playerTrack" kind="subtitles" srclang="id" label="Indonesia" default>
+        </video>
+
+        <!-- Kontrol video custom -->
+        <div class="controls">
+          <div class="progress-row">
+            <input type="range" id="progressRange" min="0" max="100" value="0">
+          </div>
+          <div class="controls-row">
+            <div class="controls-left">
+              <button class="ctrl-btn" id="btnBack10" title="Mundur 10 detik">⏪</button>
+              <button class="ctrl-btn" id="btnPlayPause" title="Play/Pause">▶</button>
+              <button class="ctrl-btn" id="btnFwd10" title="Maju 10 detik">⏩</button>
+              <span class="time-text" id="timeText">00:00 / 00:00</span>
+            </div>
+            <div class="controls-right">
+              <div class="vol-row">
+                <button class="ctrl-btn" id="btnMute" title="Mute/Unmute">🔊</button>
+                <input type="range" id="volRange" min="0" max="1" step="0.05" value="1">
+              </div>
+              <button class="ctrl-btn" id="btnCC" title="Subtitle">CC</button>
+              <select class="speed-select" id="speedSelect" title="Kecepatan putar">
+                <option value="0.5">0.5x</option>
+                <option value="1" selected>1x</option>
+                <option value="1.5">1.5x</option>
+                <option value="2">2x</option>
+              </select>
+              <button class="ctrl-btn" id="btnFullscreen" title="Layar penuh">⛶</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-area">
+        <div class="detail-title" id="detailTitle">Judul Film</div>
+        <div class="detail-meta" id="detailMeta"></div>
+        <div class="detail-desc" id="detailDesc"></div>
+
+        <!-- FORUM / CHAT KHUSUS FILM INI (di bawah deskripsi) -->
+        <div class="forum-section">
+          <div class="forum-title">💬 Forum Diskusi <span class="count" id="chatCount">(0)</span></div>
+          <div class="chat-list" id="chatList"></div>
+          <form class="chat-form" id="chatForm">
+            <textarea id="chatInput" placeholder="Tulis komentar atau pendapatmu tentang film ini..." required></textarea>
+            <button type="submit" class="chat-send">➤</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDEBAR: daftar rekomendasi (di samping video, kayak YouTube) -->
+    <aside class="watch-sidebar">
+      <div class="sidebar-title-heading">Tonton Juga</div>
+      <div id="relatedRow" class="sidebar-list"></div>
+    </aside>
+  </div>
+</div>
+
+<!-- ============ MODAL PROFIL ============ -->
+<div class="mini-modal-backdrop hidden" id="profileModalBackdrop">
+  <div class="mini-modal-box">
+    <button class="mini-modal-close" id="profileModalClose">✕</button>
+    <div class="profile-avatar-big" id="profileAvatarBig">U</div>
+    <h2 class="mini-modal-title" id="profileNameBig">User</h2>
+    <p class="mini-modal-sub" id="profileEmailBig">user@email.com</p>
+
+    <div class="profile-stats">
+      <div class="profile-stat">
+        <div class="stat-num" id="statFilmCount">0</div>
+        <div class="stat-label">Film Tersedia</div>
+      </div>
+      <div class="profile-stat">
+        <div class="stat-num" id="statCommentCount">0</div>
+        <div class="stat-label">Komentar Saya</div>
+      </div>
+    </div>
+
+    <button class="btn btn-outline btn-block" id="profileToSettingsBtn">⚙️ Buka Pengaturan</button>
+  </div>
+</div>
+
+<!-- ============ MODAL PENGATURAN ============ -->
+<div class="mini-modal-backdrop hidden" id="settingsModalBackdrop">
+  <div class="mini-modal-box">
+    <button class="mini-modal-close" id="settingsModalClose">✕</button>
+    <h2 class="mini-modal-title">Pengaturan</h2>
+    <p class="mini-modal-sub">Kelola akun & preferensi tontonanmu</p>
+
+    <form id="settingsForm">
+      <div class="field">
+        <label>Nama Tampilan</label>
+        <input type="text" id="settingsNameInput" placeholder="Nama kamu">
+      </div>
+
+      <div class="settings-toggle-row">
+        <div>
+          <div class="settings-toggle-label">Putar Otomatis</div>
+          <div class="settings-toggle-desc">Lanjut ke episode/film berikutnya secara otomatis</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="settingsAutoplayToggle" checked>
+          <span class="switch-slider"></span>
+        </label>
+      </div>
+
+      <div class="settings-toggle-row">
+        <div>
+          <div class="settings-toggle-label">Subtitle Default Aktif</div>
+          <div class="settings-toggle-desc">Tampilkan CC otomatis tiap buka film baru</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="settingsSubtitleToggle">
+          <span class="switch-slider"></span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" style="margin-top:16px;">Simpan Perubahan</button>
+    </form>
+
+    <div class="settings-danger-zone">
+      <button class="btn btn-outline btn-block" id="settingsClearCommentsBtn">🗑️ Hapus Semua Komentar Saya</button>
+      <button class="btn btn-outline btn-block danger-text" id="settingsLogoutBtn">🚪 Keluar dari Akun</button>
+    </div>
+
+    <p class="mini-modal-footnote">Layar Astra v0.1 Alpha — Data tersimpan lokal di perangkat ini.</p>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
+      <div class="feature-text">Dari aksi, drama, hingga dokumenter, semua tersedia dalam satu tempat.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💬</div>
+      <div class="feature-title">Forum Tiap Film</div>
+      <div class="feature-text">Diskusi dan komentar langsung di halaman film yang sedang kamu tonton.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📱</div>
+      <div class="feature-title">Nonton di Mana Saja</div>
+      <div class="feature-text">Tampilan responsif, nyaman diakses dari HP maupun layar besar.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LOGIN OVERLAY (MUNCUL SAAT TOMBOL MASUK/DAFTAR DIKLIK) ============ -->
+<div class="login-overlay hidden" id="loginOverlay">
+  <div class="login-split">
+
+    <!-- PANEL KIRI: FORM -->
+    <div class="login-panel-form">
+      <button class="login-back" id="loginBackBtn">← Kembali</button>
+
+      <h1 id="loginTitle">Masuk</h1>
+      <p class="subtitle-text" id="loginSubtitle">Masukkan email & kata sandi untuk melanjutkan</p>
+
+      <form id="loginForm">
+        <div class="field">
+          <label>Email</label>
+          <input type="email" id="emailInput" placeholder="nama@email.com" required>
+        </div>
+        <div class="field">
+          <label>Kata Sandi</label>
+          <input type="password" id="passInput" placeholder="Minimal 4 karakter" required>
+        </div>
+        <div class="form-error" id="loginError"></div>
+        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">Masuk</button>
+      </form>
+
+      <div class="login-toggle">
+        <span id="toggleModeText">Belum punya akun?</span>
+        <b id="toggleModeBtn">Daftar sekarang</b>
+      </div>
+
+      <p class="login-hint">
+        Ini adalah demo frontend (tanpa server). Login akan menyimpan sesi di perangkatmu saja.
+      </p>
+    </div>
+
+    <!-- PANEL KANAN: BRAND / VISUAL -->
+    <div class="login-panel-brand">
+      <div class="brand-blob blob-1"></div>
+      <div class="brand-blob blob-2"></div>
+      <div class="brand-content">
+        <div class="brand-logo">Layar<span>Astra</span></div>
         <p class="brand-tagline">Film & Animasi Indie tanpa batas — nonton, diskusi, dan nikmati bareng komunitas.</p>
       </div>
     </div>
@@ -280,7 +538,7 @@
       <button class="btn btn-outline btn-block danger-text" id="settingsLogoutBtn">🚪 Keluar dari Akun</button>
     </div>
 
-    <p class="mini-modal-footnote">NIJAU v1.0 — Data tersimpan lokal di perangkat ini.</p>
+    <p class="mini-modal-footnote">Layar Astra v0.1 Alpha— Data tersimpan lokal di perangkat ini.</p>
   </div>
 </div>
 
@@ -517,7 +775,7 @@
       <button class="btn btn-outline btn-block danger-text" id="settingsLogoutBtn">🚪 Keluar dari Akun</button>
     </div>
 
-    <p class="mini-modal-footnote">Layar Astra v0.1 — Data tersimpan lokal di perangkat ini.</p>
+    <p class="mini-modal-footnote">Layar Astra v0.1 Alpha — Data tersimpan lokal di perangkat ini.</p>
   </div>
 </div>
 
