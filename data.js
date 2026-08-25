@@ -149,7 +149,7 @@ const MOVIES = [
     rating: "SU",
     duration: "30 mnt",
     description: "Alisha adalah seorang Gen-Z yang sedang tinggal bersama Kakek, Nenek, dan adiknya Mahesa di sebuah Desa. Alisha harus dihadapkan dengan kenyataan bahwa dirinya berada di dunia antara kehidupan atau kematian, akibat terjatuh dari dari atas kursi saat sedang mengambil buku di rak yang tinggi. Ia harus memilih apakah harus kembali ke tubuhnya atau pergi ke alam akhirat.",
-    poster: "rmic2024p.jpg",
+    poster: "rmci2024p.jpg",
     banner: "rmcib2024.jpg",
     video: "https://gdurl.com/W8TK",
     subtitle: "subtitles/rmci2024.vtt",
