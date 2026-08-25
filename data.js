@@ -154,5 +154,19 @@ const MOVIES = [
     video: "https://gdurl.com/W8TK",
     subtitle: "subtitles/rmci2025.vtt",
     category: "Animasi"
+  },
+  {
+    id: "ava",
+    title: "Animation Vs Animator Full Episode",
+    year: 2005,
+    genre: "Animasi, Action",
+    rating: "SU",
+    duration: "5 JAM",
+    description: "Seorang animator menghadapi animasi miliknya sendiri dalam pertarungan yang mematikan. Medan perang? Antarmuka Flash itu sendiri. Sesosok stick figure dibuat oleh seorang animator dengan maksud untuk menyiksa. Stick figure itu akan menggunakan semua yang dapat ditemukannya - alat kuas, alat penghapus, dll. - untuk membalas penyiksanya. Ini adalah akal melawan kekuatan. Siapa yang akan menang? Kalian dapat mencari tahu sendiri.",
+    poster: "ava",
+    banner: "avab.jpg",
+    video: "#",
+    subtitle: "subtitles/ava.vtt",
+    category: "Animasi"
   }
 ];
