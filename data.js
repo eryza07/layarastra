@@ -136,7 +136,7 @@ const MOVIES = [
     description: "Rewind Minecraft 2025 Sinopsis mengisahkan petualangan Mark, Freya, dan Benny di 2026. Mereka akan melanjutkan kisah yang telah dimulai di 2025 dengan berbagai tantangan dan keajaiban yang mereka temukan.",
     poster: "https://placehold.co/400x600/047857/ffffff?text=On+Street+%26+Dirt",
     banner: "rmcib2025.jpg",
-    video: "https://www.youtube.com/watch?v=NJU98xmziS4",
+    video: "https://gdurl.com/W8TK",
     subtitle: "subtitles/rmci2025.vtt",
     category: "Animasi"
   }
