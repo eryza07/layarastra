@@ -1,18 +1,18 @@
 // data.js — Data film contoh (demo). Ganti "video" & "poster" dengan aset asli kamu nanti.
 const MOVIES = [
   {
-    id: "bbb",
-    title: "Big Buck Bunny",
-    year: 2008,
+    id: "vifan",
+    title: "Viva Fantasy The Movie",
+    year: 2022,
     genre: "Animasi",
     rating: "SU",
-    duration: "10 mnt",
-    description: "Seekor kelinci raksasa yang baik hati dibalas dengan kejahilan oleh tiga hewan pengerat nakal. Suatu hari, kesabarannya habis dan ia membalas dengan caranya sendiri.",
-    poster: "https://placehold.co/400x600/0b3d24/ffffff?text=Big+Buck+Bunny",
-    banner: "https://placehold.co/1200x500/0b3d24/ffffff?text=Big+Buck+Bunny",
+    duration: "81 mnt",
+    description: "Fifteen years after the desperate sealing ritual that claims the lives of Spade and Heart, three siblings: Marvel, Samsul, and Peppey embark on a journey into the forbidden lands of Vermilion. Marvel's mystical green pendant awakens dark powers and attracts Herobrine's sinister attention.",
+    poster: "postervifan.jpg",
+    banner: "vifan.jpg",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
     subtitle: "subtitles/sample-id.vtt",
-    category: "Trending Sekarang"
+    category: "Animasi"
   },
   {
     id: "elephant",
