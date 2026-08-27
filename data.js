@@ -2,20 +2,6 @@
 // Ganti "video" dengan aset asli kamu nanti, dan ganti file di images/posters & images/banners sesuai kebutuhan.
 const MOVIES = [
   {
-    id: "vifan",
-    title: "Viva Fantasy The Movie",
-    year: 2022,
-    genre: "Animasi",
-    rating: "SU",
-    duration: "81 mnt",
-    description: "Fifteen years after the desperate sealing ritual that claims the lives of Spade and Heart, three siblings: Marvel, Samsul, and Peppey embark on a journey into the forbidden lands of Vermilion. Marvel's mystical green pendant awakens dark powers and attracts Herobrine's sinister attention.",
-    poster: "postervifan.jpg",
-    banner: "vifan.jpg",
-    youtubeId: "90aPTVtg0pI?si=7fd8GsV_HiRtoDfr",
-    subtitle: "subtitles/sample-id.vtt",
-    category: "Animasi"
-  },
-  {
     id: "bbb",
     title: "Big Buck Bunny",
     year: 2008,
@@ -142,31 +128,31 @@ const MOVIES = [
     category: "Thriller"
   },
   {
-    id: "rmci2024",
-    title: "Rewind Minecraft Indonesia 2024",
-    year: 2024,
-    genre: "Animasi, Slice Of Life, Emotional",
+    id: "subaru",
+    title: "On Street & Dirt",
+    year: 2014,
+    genre: "Dokumenter",
     rating: "SU",
-    duration: "30 mnt",
-    description: "Alisha adalah seorang Gen-Z yang sedang tinggal bersama Kakek, Nenek, dan adiknya Mahesa di sebuah Desa. Alisha harus dihadapkan dengan kenyataan bahwa dirinya berada di dunia antara kehidupan atau kematian, akibat terjatuh dari dari atas kursi saat sedang mengambil buku di rak yang tinggi. Ia harus memilih apakah harus kembali ke tubuhnya atau pergi ke alam akhirat.",
-    poster: "rmci2024p.jpg",
-    banner: "rmcib2024.jpg",
-    video: "https://gdurl.com/W8TK",
-    subtitle: "subtitles/rmci2024.vtt",
-    category: "Animasi"
+    duration: "1 mnt",
+    description: "Sebuah tayangan dokumenter singkat tentang kemampuan berkendara di berbagai medan, dari jalan aspal hingga tanah berlumpur.",
+    poster: "images/posters/subaru.jpg",
+    banner: "images/banners/subaru.jpg",
+    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+    subtitle: "subtitles/sample-id.vtt",
+    category: "Dokumenter"
   },
   {
-    id: "ava",
-    title: "Animation Vs Animator Full Episode",
-    year: 2005,
-    genre: "Animasi, Action",
+    id: "vifan",
+    title: "Viva Fantasy The Movie",
+    year: 2022,
+    genre: "Animasi, Action, Fantasy, Shounen ",
     rating: "SU",
-    duration: "5 JAM",
-    description: "Seorang animator menghadapi animasi miliknya sendiri dalam pertarungan yang mematikan. Medan perang? Antarmuka Flash itu sendiri. Sesosok stick figure dibuat oleh seorang animator dengan maksud untuk menyiksa. Stick figure itu akan menggunakan semua yang dapat ditemukannya - alat kuas, alat penghapus, dll. - untuk membalas penyiksanya. Ini adalah akal melawan kekuatan. Siapa yang akan menang? Kalian dapat mencari tahu sendiri.",
-    poster: "ava.png",
-    banner: "avab.jpg",
-    video: "#",
-    subtitle: "subtitles/ava.vtt",
+    duration: "81 mnt",
+    description: "Lima belas tahun setelah ritual penyegelan yang putus asa yang merenggut nyawa Spade dan Heart, tiga saudara: Marvel, Samsul, dan Peppey memulai perjalanan ke tanah terlarang Vermilion. Liontin hijau mistis Marvel membangkitkan kekuatan gelap dan menarik perhatian jahat Herobrine.",
+    poster: "postervifan.jpg",
+    banner: "vifan.jpg",
+    video: "https://youtu.be/90aPTVtg0pI?si=_SqQS2O_iXcK8fn1",
+    subtitle: "",
     category: "Animasi"
   }
 ];
