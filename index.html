@@ -89,7 +89,7 @@
       <div class="brand-blob blob-2"></div>
       <div class="brand-content">
         <div class="brand-logo">Layar<span>Astra</span></div>
-        <p class="brand-tagline">Film & Aniamsi Indie tanpa batas nonton, diskusi, dan nikmati bareng komunitas.</p>
+        <p class="brand-tagline">Film & Animasi Indie tanpa batas — nonton, diskusi, dan nikmati bareng komunitas.</p>
       </div>
     </div>
 
@@ -144,7 +144,7 @@
   <main class="rows-wrap" id="rowsWrap"></main>
 
   <footer class="site-footer">
-    🟢 Layar Astra — Dibuat menjadi perantara untuk animasi dan film indie yang memakai yotube sebagai video licence nya.
+    🟢 Layar Astra — Dibuat dengan senang hati sebagai perantara film atau animasi indie yang diupload di YouTube.
   </footer>
 </div>
 
@@ -163,8 +163,14 @@
           <track id="playerTrack" kind="subtitles" srclang="id" label="Indonesia" default>
         </video>
 
-        <!-- Kontrol video custom -->
-        <div class="controls">
+        <!-- Dipakai kalau film sumbernya dari YouTube (bukan file .mp4) -->
+        <iframe id="youtubePlayer" class="youtube-embed hidden"
+          src="" title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+
+        <!-- Kontrol video custom (cuma dipakai kalau videonya file .mp4) -->
+        <div class="controls" id="customControls">
           <div class="progress-row">
             <input type="range" id="progressRange" min="0" max="100" value="0">
           </div>
