@@ -74,6 +74,8 @@ const relatedRow = document.getElementById("relatedRow");
 
 const playerVideo = document.getElementById("playerVideo");
 const playerTrack = document.getElementById("playerTrack");
+const youtubePlayer = document.getElementById("youtubePlayer");
+const customControls = document.getElementById("customControls");
 const detailTitle = document.getElementById("detailTitle");
 const detailMeta = document.getElementById("detailMeta");
 const detailDesc = document.getElementById("detailDesc");
@@ -415,6 +417,26 @@ watchLogoBtn.addEventListener("click", goHome);
 // ============================================================
 // MODAL FILM: PLAYER + FORUM/CHAT
 // ============================================================
+
+// Deteksi apakah sebuah link video adalah link YouTube, dan ambil ID videonya.
+// Mendukung: youtube.com/watch?v=ID , youtu.be/ID , youtube.com/embed/ID , atau ID polos.
+function extractYouTubeId(url) {
+  if (!url) return null;
+  const patterns = [
+    /youtu\.be\/([a-zA-Z0-9_-]{11})/,
+    /youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/,
+    /youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/,
+    /youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/,
+  ];
+  for (const p of patterns) {
+    const m = url.match(p);
+    if (m) return m[1];
+  }
+  // Kalau formatnya udah ID polos (11 karakter, tanpa "/" atau ".")
+  if (/^[a-zA-Z0-9_-]{11}$/.test(url.trim())) return url.trim();
+  return null;
+}
+
 function openMovie(id) {
   const movie = MOVIES.find(m => m.id === id);
   if (!movie) return;
@@ -429,12 +451,31 @@ function openMovie(id) {
   `;
   detailDesc.textContent = movie.description;
 
-  playerVideo.pause();
-  playerVideo.src = movie.video;
-  playerTrack.src = movie.subtitle;
-  playerVideo.load();
-  playerVideo.currentTime = 0;
-  resetPlayerUI();
+  const ytId = extractYouTubeId(movie.video);
+
+  if (ytId) {
+    // ---- FILM DARI YOUTUBE: pakai iframe + kontrol bawaan YouTube ----
+    playerVideo.pause();
+    playerVideo.removeAttribute("src");
+    playerVideo.classList.add("hidden");
+    customControls.classList.add("hidden");
+
+    youtubePlayer.src = `https://www.youtube.com/embed/${ytId}?rel=0&modestbranding=1`;
+    youtubePlayer.classList.remove("hidden");
+  } else {
+    // ---- FILM FILE .MP4 BIASA: pakai player custom kita ----
+    youtubePlayer.src = "";
+    youtubePlayer.classList.add("hidden");
+    playerVideo.classList.remove("hidden");
+    customControls.classList.remove("hidden");
+
+    playerVideo.pause();
+    playerVideo.src = movie.video;
+    playerTrack.src = movie.subtitle || "";
+    playerVideo.load();
+    playerVideo.currentTime = 0;
+    resetPlayerUI();
+  }
 
   renderChat(movie.id);
   renderRelated(movie);
@@ -448,6 +489,7 @@ function openMovie(id) {
 
 function closeMovie() {
   playerVideo.pause();
+  youtubePlayer.src = ""; // hentikan video YouTube saat halaman ditutup
   watchScreen.classList.add("hidden");
   appRoot.classList.remove("hidden");
   window.scrollTo(0, 0);
