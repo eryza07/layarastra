@@ -11,7 +11,7 @@ const MOVIES = [
     description: "Fifteen years after the desperate sealing ritual that claims the lives of Spade and Heart, three siblings: Marvel, Samsul, and Peppey embark on a journey into the forbidden lands of Vermilion. Marvel's mystical green pendant awakens dark powers and attracts Herobrine's sinister attention.",
     poster: "postervifan.jpg",
     banner: "vifan.jpg",
-    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    video: "https://youtu.be/90aPTVtg0pI?si=7fd8GsV_HiRtoDfr",
     subtitle: "subtitles/sample-id.vtt",
     category: "Animasi"
   },
