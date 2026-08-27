@@ -645,6 +645,16 @@ h1, h2, h3, .logo, .hero-title, .detail-title, .mini-modal-title,
   object-fit: contain;       /* video tidak gepeng/terpotong, tetap 16:9 */
 }
 
+/* Iframe YouTube — dipakai kalau sumber film dari YouTube (menggantikan tag <video>) */
+.youtube-embed {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #000;
+}
+
 /* Layout ala YouTube: kolom video (kiri) + sidebar rekomendasi (kanan) */
 .watch-body {
   display: flex;
