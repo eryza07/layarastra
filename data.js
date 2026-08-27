@@ -154,5 +154,19 @@ const MOVIES = [
     video: "https://youtu.be/90aPTVtg0pI?si=_SqQS2O_iXcK8fn1",
     subtitle: "",
     category: "Animasi"
+  },
+  {
+    id: "rmci2024",
+    title: "Rewind Minecraft Indonesia 2024",
+    year: 2024,
+    genre: "Animasi ",
+    rating: "SU",
+    duration: "40 mnt",
+    description: "Alisha adalah seorang Gen-Z yang tinggal bersama kakek, nenek, dan saudara perempuannya Mahesa di sebuah desa. Alisha harus menghadapi kenyataan bahwa dia berada di dunia antara hidup dan mati, akibat jatuh dari kursi saat mengambil buku di rak tinggi. Dia harus memilih apakah akan kembali ke tubuhnya atau pergi ke alam baka.",
+    poster: "rmci2024.jpg",
+    banner: "rmcib2024.jpg",
+    video: "https://youtu.be/Gjz8DKKKvD0?si=VIDlMPq1P_eAmTQm",
+    subtitle: "",
+    category: "Animasi"
   }
 ];
